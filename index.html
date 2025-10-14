@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-   <meta charset="UTF-8"> <!--special char-->
-   <meta name="viewport" content="width=device-width, initial-scale=1.0"
+<head>
+   <!--special char-->
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
    <title>Pope's Chess</title>
-
    <style>
         body{
             font-family: Arial;
@@ -16,27 +17,27 @@
             background: black;
         }
 
-        .game.container {
+        .game-container {
             text-align: center;
         }
 
         .board-display {
             font-family: monospace;
-            font-size: 12px;
+            font-size: 24px;
             white-space: pre;
             background: white;
             padding: 20px;
-            border: 2px;
+            border: 2px solid black;
             text-align: left;
             display: inline-block;
             line-height: 1.5;
         }
    </style>
 
-<head>
+</head>
 <body>
     <div class="game-container">
-        <h1>Pope's Chess</h1>
+        <h1 style="color: white;">Pope's Chess</h1>
         <div id="board-display" class="board-display"></div>
     </div>
     <script>
@@ -46,19 +47,14 @@
         };
 
         let board = [
-            // Row 0 (Black back rank)
             ['br', 'bn', 'bb', 'bo', 'bk', 'bq', 'bb', 'bn', 'br'],
-            // Row 1 (Black pawns)
             ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
-            // Empty rows
             ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
             ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
             ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
             ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
             ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            // Row 7 (White pawns)
             ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
-            // Row 8 (White back rank)
             ['wr', 'wn', 'wb', 'wq', 'wk', 'wo', 'wb', 'wn', 'wr']
         ];
 
@@ -66,46 +62,29 @@
             const boardElement = document.getElementById('board-display');
             let boardText = '';
             
-            // Add column labels
+            // adding labels
             boardText += '   a b c d e f g h i\n\n';
             
             for (let row = 0; row < 9; row++) {
-                // Add row number
                 boardText += `${9 - row}  `;
-                
-                // Add pieces for this row
+               
                 for (let col = 0; col < 9; col++) {
-                    boardText += board[row][col] + ' ';
+                   const piece = board[row][col];
+                   boardText += (pieces[piece] || piece) + ' ';
                 }
-                
-                // Add row number at end
                 boardText += ` ${9 - row}\n`;
             }
             
-            // Add column labels at bottom  
             boardText += '\n   a b c d e f g h i\n\n';
-            
-            // Add legend
-            boardText += 'Piece Legend:\n';
-            boardText += 'o = Pope    w/b = White/Black\n';
-            boardText += 'k = King    q = Queen\n';
-            boardText += 'r = Rook    b = Bishop\n';
-            boardText += 'n = Knight  p = Pawn\n';
-            boardText += '. = Empty square\n';
-            
             boardElement.textContent = boardText;
         }
 
-        // Initialize when page loads
+         // initalize board
         window.onload = function() {
             displayBoard();
-            
-            console.log('Pope Chess Board initialized!');
-            console.log('White Pope (O) at f1');
-            console.log('Black Pope (o) at d9');
+            console.log('Chess board active');
         };
 
     </script>
 </body>
-</head>
 </html>
