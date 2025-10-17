@@ -1,90 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <!--special char-->
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
    <title>Pope's Chess</title>
-   <style>
-        body{
-            font-family: Arial;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: black;
-        }
-
-        .game-container {
-            text-align: center;
-        }
-
-        .board-display {
-            font-family: monospace;
-            font-size: 24px;
-            white-space: pre;
-            background: white;
-            padding: 20px;
-            border: 2px solid black;
-            text-align: left;
-            display: inline-block;
-            line-height: 1.5;
-        }
-   </style>
-
+   <link rel="stylesheet" href="styles.css">
 </head>
+   
 <body>
     <div class="game-container">
-        <h1 style="color: white;">Pope's Chess</h1>
-        <div id="board-display" class="board-display"></div>
+        <h1>Pope's Chess</h1>
+        <div id="board" class="board"></div>
+        <div class="info" id="info">White to move</div>
+        <button onclick="resetBoard()">Reset Game</button>
     </div>
-    <script>
-        const pieces = {
-            'wk': '♔', 'wq': '♕', 'wr': '♖', 'wb': '♗', 'wn': '♘', 'wp': '♙', 'wo': '♗',
-            'bk': '♚', 'bq': '♛', 'br': '♜', 'bb': '♝', 'bn': '♞', 'bp': '♟', 'bo': '♝'
-        };
 
-        let board = [
-            ['br', 'bn', 'bb', 'bo', 'bk', 'bq', 'bb', 'bn', 'br'],
-            ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
-            ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
-            ['wr', 'wn', 'wb', 'wq', 'wk', 'wo', 'wb', 'wn', 'wr']
-        ];
-
-        function displayBoard() {
-            const boardElement = document.getElementById('board-display');
-            let boardText = '';
-            
-            // adding labels
-            boardText += '   a b c d e f g h i\n\n';
-            
-            for (let row = 0; row < 9; row++) {
-                boardText += `${9 - row}  `;
-               
-                for (let col = 0; col < 9; col++) {
-                   const piece = board[row][col];
-                   boardText += (pieces[piece] || piece) + ' ';
-                }
-                boardText += ` ${9 - row}\n`;
-            }
-            
-            boardText += '\n   a b c d e f g h i\n\n';
-            boardElement.textContent = boardText;
-        }
-
-         // initalize board
-        window.onload = function() {
-            displayBoard();
-            console.log('Chess board active');
-        };
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
