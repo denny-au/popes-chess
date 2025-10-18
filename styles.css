@@ -74,6 +74,12 @@ h1 {
     height: 30px;
 }
 
+.pope-icon {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 0 1px black);
+}
+
 button {
     padding: 10px 20px;
     font-size: 14px;
