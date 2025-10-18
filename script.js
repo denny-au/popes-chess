@@ -36,11 +36,7 @@ function initializeBoard() {
             
             const piece = board[row][col];
             if (piece !== '.') {
-                if (piece.endsWith('o')) {
-                    square.innerHTML = pieces[piece];  // Use innerHTML for SVG
-                } else {
-                    square.textContent = pieces[piece];  // Use textContent for Unicode
-                }
+                square.textContent = pieces[piece];
             }
             
             square.dataset.row = row;
@@ -117,45 +113,37 @@ function getPopeMoves(row, col, player) {
         }
     }
     
+    // If there are adjacent pieces, pope can jump
     if (adjacent.length > 0) {
+        // Jump over adjacent allies
         for (let {piece, dr, dc} of adjacent) {
             if (isAlly(piece, player)) {
-                let distance = 1;
-                while (true) {
-                    const nr = row + dr * (distance + 1);
-                    const nc = col + dc * (distance + 1);
-                    if (nr < 0 || nr >= 9 || nc < 0 || nc >= 9) break;
-                    
-                    const target = board[nr][nc];
-                    if (target === '.') {
+                // Can only land on the square directly after the ally
+                const nr = row + dr * 2;
+                const nc = col + dc * 2;
+                if (nr >= 0 && nr < 9 && nc >= 0 && nc < 9) {
+                    if (board[nr][nc] === '.') {
                         moves.push([nr, nc]);
-                    } else {
-                        break;
                     }
-                    distance++;
                 }
             }
         }
         
+        // Jump over adjacent enemies to capture
         for (let {piece, dr, dc} of adjacent) {
             if (isEnemy(piece, player)) {
-                let distance = 1;
-                while (true) {
-                    const nr = row + dr * (distance + 1);
-                    const nc = col + dc * (distance + 1);
-                    if (nr < 0 || nr >= 9 || nc < 0 || nc >= 9) break;
-                    
-                    const target = board[nr][nc];
-                    if (target === '.') {
+                // Can only land on the square directly after the enemy
+                const nr = row + dr * 2;
+                const nc = col + dc * 2;
+                if (nr >= 0 && nr < 9 && nc >= 0 && nc < 9) {
+                    if (board[nr][nc] === '.') {
                         moves.push([nr, nc]);
-                    } else {
-                        break;
                     }
-                    distance++;
                 }
             }
         }
     } else {
+        // No adjacent pieces - move like a king
         for (let dr = -1; dr <= 1; dr++) {
             for (let dc = -1; dc <= 1; dc++) {
                 if (dr === 0 && dc === 0) continue;
