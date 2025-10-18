@@ -36,7 +36,11 @@ function initializeBoard() {
             
             const piece = board[row][col];
             if (piece !== '.') {
-                square.textContent = pieces[piece];
+                if (piece.endsWith('o')) {
+                    square.innerHTML = pieces[piece];  // Use innerHTML for SVG
+                } else {
+                    square.textContent = pieces[piece];  // Use textContent for Unicode
+                }
             }
             
             square.dataset.row = row;
