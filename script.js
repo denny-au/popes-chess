@@ -1,6 +1,6 @@
 const pieces = {
-    'wk': '♔', 'wq': '♕', 'wr': '♖', 'wb': '♗', 'wn': '♘', 'wp': '♙', 'wo': '♗',
-    'bk': '♚', 'bq': '♛', 'br': '♜', 'bb': '♝', 'bn': '♞', 'bp': '♟', 'bo': '♝'
+    'wk': '♔', 'wq': '♕', 'wr': '♖', 'wb': '♗', 'wn': '♘', 'wp': '♙', 'wo': '⚜',
+    'bk': '♚', 'bq': '♛', 'br': '♜', 'bb': '♝', 'bn': '♞', 'bp': '♟', 'bo': '<img src="pope-icon.svg" class="pope-icon" alt="Pope">'
 };
 
 let board = [
